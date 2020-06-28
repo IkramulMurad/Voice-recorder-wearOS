@@ -5,4 +5,7 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="cancel_recording">cancel recording</string>
+    <string name="start_recording">start recording</string>
+    <string name="stop_recording">stop recording</string>
 </resources>

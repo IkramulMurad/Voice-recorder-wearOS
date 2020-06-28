@@ -32,6 +32,7 @@ public class CustomChronometer {
             running = true;
         }
     }
+
     public void pauseChronometer(View v) {
         if (running) {
             chronometer.stop();
@@ -39,7 +40,9 @@ public class CustomChronometer {
             running = false;
         }
     }
+
     public void resetChronometer(View v) {
+        pauseChronometer(v);
         chronometer.setBase(SystemClock.elapsedRealtime());
         pauseOffset = 0;
     }

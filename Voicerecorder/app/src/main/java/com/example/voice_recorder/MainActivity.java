@@ -11,6 +11,13 @@ public class MainActivity extends WearableActivity {
     private ImageButton startRecording;
     private ImageButton stopRecording;
 
+    enum RecordingState {
+        STATE_NONE,
+        STATE_RECORDING,
+        STATE_PAUSE
+    }
+    private RecordingState recordingState;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,9 +27,11 @@ public class MainActivity extends WearableActivity {
         setAmbientEnabled();
 
         initView();
+        setOnClickListeners();
     }
 
     private void initView() {
+        recordingState = RecordingState.STATE_NONE;
         recordingTimer = new CustomChronometer(this, R.id.recording_timer);
 
         startRecording = findViewById(R.id.start_recording);
@@ -31,5 +40,45 @@ public class MainActivity extends WearableActivity {
 
         stopRecording.setVisibility(View.GONE);
         cancelRecording.setVisibility(View.GONE);
+    }
+
+    private void setOnClickListeners() {
+        startRecording.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (recordingState == RecordingState.STATE_NONE) {
+                    recordingState = RecordingState.STATE_RECORDING;
+                    recordingTimer.startChronometer(view);
+
+                    startRecording.setImageResource(R.drawable.pause_recording);
+                    stopRecording.setVisibility(View.VISIBLE);
+                    cancelRecording.setVisibility(View.VISIBLE);
+                } else if (recordingState == RecordingState.STATE_RECORDING) {
+                    recordingState = RecordingState.STATE_PAUSE;
+                    recordingTimer.pauseChronometer(view);
+
+                    startRecording.setImageResource(R.drawable.resume_recording);
+                } else if (recordingState == RecordingState.STATE_PAUSE) {
+                    recordingState = RecordingState.STATE_RECORDING;
+                    recordingTimer.startChronometer(view);
+
+                    startRecording.setImageResource(R.drawable.pause_recording);
+                }
+            }
+        });
+
+        stopRecording.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        cancelRecording.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 }

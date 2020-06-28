@@ -9,6 +9,7 @@ public class CustomChronometer {
     private Chronometer chronometer;
     private long pauseOffset;
     private boolean running;
+    private long timerMax = (60 * 60 * 1000);
 
     public CustomChronometer(Activity activity, int resId) {
         chronometer = (Chronometer)activity.findViewById(resId);
@@ -17,7 +18,7 @@ public class CustomChronometer {
         chronometer.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
-                if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= 3600) {
+                if ((SystemClock.elapsedRealtime() - chronometer.getBase()) >= timerMax) {
                     chronometer.setBase(SystemClock.elapsedRealtime());
                 }
             }

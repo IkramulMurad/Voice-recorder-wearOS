@@ -15,25 +15,31 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <Chronometer
-            android:id="@+id/chronometer"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="60sp" />
+            android:layout_marginTop="15dp"
+            android:text="Memo 001"></TextView>
 
-        <LinearLayout
+        <Chronometer
+            android:id="@+id/recording_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="30sp" />
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/cancel_recording"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_toLeftOf="@id/start_recording"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/cancel_recording"
@@ -43,12 +49,10 @@
 
             <ImageButton
                 android:id="@+id/start_recording"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="1dp"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="25dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginBottom="5dp"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/start_recording"
@@ -58,19 +62,19 @@
 
             <ImageButton
                 android:id="@+id/stop_recording"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="1dp"
+                android:layout_centerHorizontal="false"
+                android:layout_marginLeft="20dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
+                android:layout_toRightOf="@id/start_recording"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/stop_recording"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
-                android:src="@android:drawable/ic_notification_overlay" />
-        </LinearLayout>
+                android:src="@drawable/stop_recording" />
+        </RelativeLayout>
     </LinearLayout>
 
 </androidx.wear.widget.BoxInsetLayout>
